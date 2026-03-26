@@ -1,0 +1,77 @@
+1. BANKING SYSTEM
+
+def banking_system():
+    balance = 0.0
+    
+    while True:
+        print("\n--- Simple Banking System ---")
+        print("1. Check Balance")
+        print("2. Deposit Money")
+        print("3. Withdraw Money")
+        print("4. Exit")
+        
+        choice = input("Select an option (1-4): ")
+        
+        if choice == '1':
+            print(f"Your current balance is: P{balance:,.2f}")
+        
+        elif choice == '2':
+            amount = float(input("Enter amount to deposit: "))
+            if amount > 0:
+                balance += amount
+                print(f"P{amount:,.2f} deposited successfully.")
+            else:
+                print("Invalid amount.")
+        
+        elif choice == '3':
+            amount = float(input("Enter amount to withdraw: "))
+            if 0 < amount <= balance:
+                balance -= amount
+                print(f"P{amount:,.2f} withdrawn successfully.")
+            elif amount > balance:
+                print("Insufficient funds!")
+            else:
+                print("Invalid amount.")
+        
+        elif choice == '4':
+            print("Thank you for using the banking system. Goodbye!")
+            break
+        
+        else:
+            print("Invalid choice. Please try again.")
+
+banking_system()
+
+
+2. STUDENT GRADE MANAGER
+
+class Student:
+    def __init__(self, name, grades):
+        self.name = name
+        self.grades = grades
+
+    def calculate_average(self):
+        return sum(self.grades) / len(self.grades) if self.grades else 0
+
+def run_grade_manager():
+    # Input data
+    name = "Alex"
+    grades = [85, 90, 78, 92, 88]
+    
+    # Create student object
+    student = Student(name, grades)
+    avg = student.calculate_average()
+    
+    # Lambda function to determine category
+    # Criteria: A (90+), B (80-89), C (70-79), D (Below 70)
+    get_category = lambda score: "A" if score >= 90 else ("B" if score >= 80 else ("C" if score >= 70 else "D"))
+    
+    category = get_category(avg)
+    
+    # Using f-strings for formatted output
+    print("--- Student Report Card ---")
+    print(f"Student Name : {student.name}")
+    print(f"Average Grade: {avg:.2f}")
+    print(f"Category     : {category}")
+
+run_grade_manager()
